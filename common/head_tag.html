@@ -13,7 +13,7 @@
 
   // identify() will be called when a user logs in, or refreshes the page.
   if (settings.track_users && currentUser && !userID) {
-      api.container.lookup('store:main').find('user', currentUser.username).then((user) => {
+      api.container.lookup('service:store').find('user', currentUser.username).then((user) => {
           userID = ssoEnabled && settings.track_by_external_id ? user.external_id : user.id;
           if (settings.include_user_email) {
               analytics.identify(userID, {email: user.email})
